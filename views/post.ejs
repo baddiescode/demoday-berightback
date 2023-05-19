@@ -1,0 +1,56 @@
+<%- include('partials/header') -%>
+
+<table>
+    <thead>
+      <tr>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= destination.location %></td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Category</th>
+        <th>Rating</th>
+        <th>Price</th>
+        <th>Address</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for(var i = 0; i < restaurants.length; i++) { %>
+      <tr>
+        <td><%= restaurants[i].name %></td>
+        <td><img src="<%= restaurants[i].image_url %>" alt="gallery"></td>
+        <td><%= restaurants[i].categories[0].title %></td>
+        <td><%= restaurants[i].rating %></td>
+        <td><%= restaurants[i].price %></td>
+        <td><%= restaurants[i].location.display_address %></td>
+        <td><%= restaurants[i].display_phone %></td>
+        <td><button class="add" type="button">Add</button></td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+  <script src= "../main.js" type="text/javascript" ></script>
+  
+
+<%- include('partials/footer') -%>
+
+
+
+
+
+
+
+
+
