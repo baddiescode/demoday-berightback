@@ -2,6 +2,7 @@ const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
 const Comment = require("../models/Comment");
 const Destination = require("../models/Destination");
+const Added = require("../models/Added");
 let yelpAPI = require('yelp-api');
 const ObjectId = require('mongodb').ObjectId
 
@@ -29,7 +30,7 @@ module.exports = {
       // Call the endpoint
       yelp.query('businesses/search', params)
       .then(data => {
-        console.log(data)
+        // console.log(data)
         res.render("post.ejs", {
           user : req.user,
           destination: destinations[0],
@@ -58,6 +59,39 @@ module.exports = {
 
 
       res.redirect("/profile");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  // creating new route for added items
+  addIten: async (req, res) => {
+    // console.log(req.body)
+    console.log("testing")
+    // console.log(req.user)
+    try {
+      await Added.create({
+        name: req.body.name,
+        type: req.body.type,
+        rating: req.body.rating,
+        price: req.body.price,
+        address: req.body.address,
+        phone: req.body.phone,
+        user: req.user.id,
+        // tripID: req.params.id,
+      });
+      console.log("Added!");
+
+
+      res.redirect("/itinerary");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  getItin: async (req, res) => {
+    try {
+      const itinerary = await Added.find({ user: req.user.id });
+      res.render("itinerary.ejs", { itinerary: itinerary, user: req.user });
     } catch (err) {
       console.log(err);
     }

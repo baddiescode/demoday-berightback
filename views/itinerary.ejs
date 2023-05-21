@@ -1,0 +1,19 @@
+<%- include('partials/header') -%>
+
+<tbody>
+    <% for(var i = 0; i < itinerary.length; i++) { %>
+    <tr>
+      <form action="/post/addIten" method="POST">
+        <input name="name" value="<%= itinerary[i].name %>" readonly>
+        <input name="rating" value="<%= itinerary[i].rating %>" readonly>
+        <input name="price" value="<%= itinerary[i].price %>" readonly>
+        <input name="address" value="<%= itinerary[i].address %>" readonly size="40">
+        <input name="phone" value="<%= itinerary[i].phone %>" readonly>
+        <input class="add" type="submit" value="Add">
+      </form>
+    </tr>
+
+    <% } %>
+  </tbody>
+
+<%- include('partials/footer') -%>

@@ -28,18 +28,22 @@
     <tbody>
       <% for(var i = 0; i < restaurants.length; i++) { %>
       <tr>
-        <td><%= restaurants[i].name %></td>
-        <td><img src="<%= restaurants[i].image_url %>" alt="gallery"></td>
-        <td><%= restaurants[i].categories[0].title %></td>
-        <td><%= restaurants[i].rating %></td>
-        <td><%= restaurants[i].price %></td>
-        <td><%= restaurants[i].location.display_address %></td>
-        <td><%= restaurants[i].display_phone %></td>
-        <td><button class="add" type="button">Add</button></td>
+        <form action="/post/addIten" method="POST">
+          <input name="name" value="<%= restaurants[i].name %>" readonly>
+          <input name="picture"><img src="<%= restaurants[i].image_url %>" alt="gallery">
+          <input name="type" value="<%= restaurants[i].categories[0].title %>" readonly>
+          <input name="rating" value="<%= restaurants[i].rating %>" readonly>
+          <input name="price" value="<%= restaurants[i].price %>" readonly>
+          <input name="address" value="<%= restaurants[i].location.display_address %>" readonly>
+          <input name="phone" value="<%= restaurants[i].display_phone %>" readonly>
+          <input class="add" type="submit" value="Add">
+        </form>
       </tr>
+
       <% } %>
     </tbody>
   </table>
+
 
   <script src= "../main.js" type="text/javascript" ></script>
   
