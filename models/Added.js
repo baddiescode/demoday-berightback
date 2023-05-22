@@ -33,10 +33,10 @@ const AddedSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    // tripID: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "Destination",
-    // },
+    location: {
+      type: String,
+      required: true,
+    },
   });
   
 

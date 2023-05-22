@@ -11,7 +11,11 @@ router.post("/createPost", upload.single("file"), postsController.createPost);
 
 router.post("/addDestination", postsController.addDestination);
 
-router.post("/addIten", postsController.addIten);
+router.delete("/deleteDestination/:id", postsController.deleteDestination);
+
+// router.delete("/deleteItin/:id", postsController.deleteItin);
+
+router.post("/addIten/:location", postsController.addIten);
 
 router.post("/createComment/:id", postsController.createComment);
 

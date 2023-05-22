@@ -1,3 +1,40 @@
 .logo{
     width: 500px;
+    display: flex;
+}
+
+.logoutpage{
+    display: flex;
+}
+
+.card-title{
+    border: 0px;
+}
+
+.title{
+    color: orange;
+}
+
+.card-text{
+    border: 0px;
+}
+
+.text-body-secondary{
+    border: 0px;
+}
+
+.headers{
+    color: black;
+}
+
+.fa-trash{
+    color: black;
+}
+
+.table-date{
+    color: black;
+}
+
+.planned-trips{
+    color: black;
 }

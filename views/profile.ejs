@@ -1,66 +1,3 @@
-<!-- <%- include('partials/header') -%>
-<div class="container">
-  <div class="row mt-5">
-      <div class="col-6">
-          <div>
-              <p><strong>User Name</strong>: <%= user.userName %></p>
-              <p><strong>Email</strong>: <%= user.email %></p>
-              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-          </div>
-      
- <form action="/post/addDestination" method="POST">
-      <div class="row g-0 custom-search-input-2">
-        <div class="col-lg-4">
-          <div class="form-group">
-
-            <input class="form-control" type="text" placeholder="Where to?" name="location" required>
-            <i class="icon_pin_alt"></i>
-
-          </div>
-        </div>
-        <div class="col-lg-3">
-          <div class="form-group">
-            <input class="form-control" type="date" placeholder="When.." name="date" required>
-            <i class="icon_calendar"></i>
-          </div>
-        </div>
-        <div class="col-lg-2">
-          <input type="submit" class="btn_search" id="plan" value="Start Planning">
-        </div>
-      </section>
-
-        <h3>Planned Trips</h3>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Travel Date</th>
-              <th>Destination</th>
-              <th>Hit List</th>
-              <th><i class="fa fa-trash" aria-hidden="true"></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% for(var i=0; i<destinations.length; i++) { %>
-              <tr>
-                <td><a href="/post/<%= destinations[i]._id%>"><%= destinations[i].location %></a></td>
-                <td><%= destinations[i].date %></td>
-                <td><%= destinations[i].star %><i class="fa-solid fa-star" aria-hidden="true"></td>
-                <td><i class="fa fa-trash" aria-hidden="true"></i></td>
-              </tr>
-            <% } %>
-          </tbody>
-        </table>
-
-      
-
-      </div>
-    </form>
-
-    
-  </div>
-</div>
-<%- include('partials/footer') -%> -->
 
 
 <!DOCTYPE html>
@@ -76,20 +13,6 @@
 	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 	<meta name="author" content="FREEHTML5.CO" />
-
-  <!-- 
-	//////////////////////////////////////////////////////
-
-	FREE HTML5 TEMPLATE 
-	DESIGNED & DEVELOPED by FREEHTML5.CO
-		
-	Website: 		http://freehtml5.co/
-	Email: 			info@freehtml5.co
-	Twitter: 		http://twitter.com/fh5co
-	Facebook: 		https://www.facebook.com/fh5co
-
-	//////////////////////////////////////////////////////
-	 -->
 
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
@@ -124,6 +47,8 @@
 	<link rel="stylesheet" href="css1/cs-skin-border.css">
 	
 	<link rel="stylesheet" href="css1/style.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<script src="https://kit.fontawesome.com/4c83b50b1e.js" crossorigin="anonymous"></script>
 
 
 	<!-- Modernizr JS -->
@@ -142,18 +67,17 @@
 			<div class="container">
 				<div class="nav-header">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-					<h1 id="fh5co-logo"><a href="index.html"><i class="icon-airplane"></i>Be Right Back</a></h1>
+					<h1 id="fh5co-logo"><a href="/profile"></i><img src="/imgs/brb.png" width="200px" alt=""></a></h1>
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li class="active"><a href="index.html">Home</a></li>
+							<li class="active"><a href="/profile">Home</a></li>
 							<li>
 								<a href="/itinerary" class="fh5co-sub-ddown">Itinerary</a>
 								<ul class="fh5co-sub-menu">
-									<li><a href="#">CSS3 &amp; HTML5</a></li>
-									<li><a href="#">Angular JS</a></li>
-									<li><a href="#">Node JS</a></li>
-									<li><a href="#">Django &amp; Python</a></li>
+									<% for(var i=0; i<destinations.length; i++) { %>
+										<li><a href="/itinerary/<%= destinations[i].location%>"><%= destinations[i].location %></a></li>
+									  <% } %>
 								</ul>
 							</li>
 							<li><a href="hotel.html">Budget</a></li>
@@ -168,7 +92,7 @@
 	
 		<div class="fh5co-hero">
 			<div class="fh5co-overlay"></div>
-			<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_1.jpg);">
+			<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(imgs/lake.jpg);">
 				<div class="desc">
 					<div class="container">
 						<div class="row">
@@ -206,15 +130,14 @@
 													<input type="submit" class="btn_search" id="plan" value="Start Planning">
 												  </div>
 												</section>
-										  
-												  <h3>Planned Trips</h3>
+													
+												<br>
+												  <h3 class="planned-trips">Planned Trips</h3>
 												  <table class="table">
 													<thead>
 													  <tr>
-														<th>Destination</th>
-														<th>Departing</th>
-														<th>Hit List</th>
-														<th><i class="fa fa-trash" aria-hidden="true"></th>
+														<th class="headers">Destination</th>
+														<th class="headers">Departing</th>
 													  </tr>
 													</thead>
 										  
@@ -222,9 +145,16 @@
 													  <% for(var i=0; i<destinations.length; i++) { %>
 														<tr>
 														  <td><a href="/post/<%= destinations[i]._id%>"><%= destinations[i].location %></a></td>
-														  <td><%= destinations[i].date %></td>
-														  <td><%= destinations[i].star %><i class="fa-solid fa-star" aria-hidden="true"></td>
-														  <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+														  <td class="table-date"><%= destinations[i].date %></td>
+
+
+														  <td><form action="/post/deleteDestination/<%= destinations[i]._id%>?_method=DELETE"
+															method="POST"
+															class="col-3"
+															>
+															<button class="btn btn-primary fa fa-trash" type="submit"></button>
+       													 </form></td>
+														  <!-- <td><i class="fa fa-trash" aria-hidden="true"></i></td> -->
 														</tr>
 													  <% } %>
 													</tbody>
@@ -241,7 +171,6 @@
 							</div>
 							<div class="desc2 animate-box">
 								<div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1">
-									<p>Be Right Back</p>
 									<h2>Plan local outings or travel getaways with ease using BRB to organize and map your itineraries.</h2>
 								</div>
 							</div>
@@ -256,134 +185,45 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-						<h3>Hot Tours</h3>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						<h3>Indulge your wanderlust with Be Right Back. </h3>
+						<p>Disappear into new cuisines, be serenaded by your favorite artist amidst a crowd of strangers, immerse yourself into century-old art and history. or, just relax on a beach mesmerized by the sound of crashing waves. Plan your next escape with Be Right Back: The Ultimate Travel Planner.</p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
-						<div href="#"><img src="images/place-1.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
+						<div><img src="imgs/concert.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
 							<div class="desc">
 								<span></span>
-								<h3>New York</h3>
-								<span>3 nights + Flight 5*Hotel</span>
-								<span class="price">$1,000</span>
-								<a class="btn btn-primary btn-outline" href="#">Book Now <i class="icon-arrow-right22"></i></a>
+								<h3>Find Concerts</h3>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
-						<div href="#"><img src="images/place-2.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
+						<div href="#"><img src="imgs/eat.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
 							<div class="desc">
 								<span></span>
-								<h3>Philippines</h3>
-								<span>4 nights + Flight 5*Hotel</span>
-								<span class="price">$1,000</span>
-								<a class="btn btn-primary btn-outline" href="#">Book Now <i class="icon-arrow-right22"></i></a>
+								<h3>Find Restaurants</h3>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
-						<div href="#"><img src="images/place-3.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
+						<div href="#"><img src="imgs/relax.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
 							<div class="desc">
 								<span></span>
-								<h3>Hongkong</h3>
-								<span>2 nights + Flight 4*Hotel</span>
-								<span class="price">$1,000</span>
-								<a class="btn btn-primary btn-outline" href="#">Book Now <i class="icon-arrow-right22"></i></a>
+								<h3>Plan Relaxation</h3>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+						<div href="#"><img src="imgs/swing.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
+							<div class="desc">
+								<span></span>
+								<h3>Plan Amusement</h3>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-12 text-center animate-box">
-						<p><a class="btn btn-primary btn-outline btn-lg" href="#">See All Offers <i class="icon-arrow-right22"></i></a></p>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div id="fh5co-features">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 animate-box">
-
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-hotairballoon"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Family Travel</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="col-md-4 animate-box">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-search"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Travel Plans</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-wallet"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Honeymoon</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-4 animate-box">
-
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-wine"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Business Travel</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="col-md-4 animate-box">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-genius"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Solo Travel</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
-							</div>
-						</div>
-
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="feature-left">
-							<span class="icon">
-								<i class="icon-chat"></i>
-							</span>
-							<div class="feature-copy">
-								<h3>Explorer</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -393,57 +233,6 @@
 		<footer>
 			<div id="footer">
 				<div class="container">
-					<div class="row row-bottom-padded-md">
-						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
-							<h3>About Travel</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-						</div>
-						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
-							<h3>Top Flights Routes</h3>
-							<ul>
-								<li><a href="#">Manila flights</a></li>
-								<li><a href="#">Dubai flights</a></li>
-								<li><a href="#">Bangkok flights</a></li>
-								<li><a href="#">Tokyo Flight</a></li>
-								<li><a href="#">New York Flights</a></li>
-							</ul>
-						</div>
-						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
-							<h3>Top Hotels</h3>
-							<ul>
-								<li><a href="#">Boracay Hotel</a></li>
-								<li><a href="#">Dubai Hotel</a></li>
-								<li><a href="#">Singapore Hotel</a></li>
-								<li><a href="#">Manila Hotel</a></li>
-							</ul>
-						</div>
-						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
-							<h3>Interest</h3>
-							<ul>
-								<li><a href="#">Beaches</a></li>
-								<li><a href="#">Family Travel</a></li>
-								<li><a href="#">Budget Travel</a></li>
-								<li><a href="#">Food &amp; Drink</a></li>
-								<li><a href="#">Honeymoon and Romance</a></li>
-							</ul>
-						</div>
-						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
-							<h3>Best Places</h3>
-							<ul>
-								<li><a href="#">Boracay Beach</a></li>
-								<li><a href="#">Dubai</a></li>
-								<li><a href="#">Singapore</a></li>
-								<li><a href="#">Hongkong</a></li>
-							</ul>
-						</div>
-						<div class="col-md-2 col-sm-2 col-xs-12 fh5co-footer-link">
-							<h3>Affordable</h3>
-							<ul>
-								<li><a href="#">Food &amp; Drink</a></li>
-								<li><a href="#">Fare Flights</a></li>
-							</ul>
-						</div>
-					</div>
 					<div class="row">
 						<div class="col-md-6 col-md-offset-3 text-center">
 							<p class="fh5co-social-icons">

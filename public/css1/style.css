@@ -30,6 +30,11 @@ a {
   -o-transition: 0.5s, ease;
   transition: 0.5s, ease;
 }
+
+.col-sm-7{
+
+}
+
 a:hover {
   text-decoration: none;
   color: #F78536;
@@ -144,6 +149,14 @@ figure {
     height: 700px;
   }
 }
+
+.col-md-5{
+  width: 80%;
+  opacity: 70%;
+  margin-left: 10%;
+  margin-top: -6%;
+}
+
 .fh5co-cover .fh5co-overlay,
 .fh5co-hero .fh5co-overlay {
   position: absolute !important;
@@ -194,6 +207,7 @@ figure {
   z-index: 2;
   color: #fff;
 }
+
 @media screen and (max-width: 768px) {
   .fh5co-cover .desc {
     padding-left: 15px;
@@ -202,9 +216,13 @@ figure {
 }
 .fh5co-cover .desc h2 {
   color: #fff;
-  font-size: 60px;
   margin-bottom: 10px;
   font-weight: 400 !important;
+  font-size: 29px;
+  text-align: center;
+  margin-left: 23%;
+  margin-top: 6%;
+  width: 100%;
 }
 @media screen and (max-width: 768px) {
   .fh5co-cover .desc h2 {
@@ -212,7 +230,11 @@ figure {
   }
 }
 .fh5co-cover .desc h3 {
-  color: #fff;
+  color: black;
+  float: left;
+  width: 100%;
+  margin-top: 7%;
+  margin-left: 1%;
 }
 .fh5co-cover .desc p {
   display: block;
@@ -247,7 +269,7 @@ figure {
 
 /* Superfish Override Menu */
 .sf-menu {
-  margin: 7px 0 0 0 !important;
+  margin: 24px 0 0 0 !important;
 }
 
 .sf-menu {
@@ -361,6 +383,7 @@ figure {
 }
 
 .nav-header {
+  height: 144px;
   position: relative;
   float: left;
   width: 100%;
@@ -371,7 +394,7 @@ figure {
   z-index: 2;
   font-size: 28px;
   text-transform: uppercase;
-  margin-top: 35px;
+  margin-bottom: 10px;
   font-weight: 700;
   float: left;
   padding-left: 40px;

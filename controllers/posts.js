@@ -19,6 +19,7 @@ module.exports = {
     try {
       const _id = ObjectId(req.params.id)
       const destinations = await Destination.find({ _id: _id });
+      const allDestinations = await Destination.find({ user: req.user.id });
       console.log(destinations)
       let apiKey = 'QWNLNhdm7g61ZR5gab0Ef5zBFzUWF_nCXCG3LdRRjc34GTBnjFrLEz-7T0Hif8Byjot-nrwdS9QVYRlzvusMavClPaWpMCk1DT1RUhm_FkZwB3406ZEmh5dpApZOZHYx';
       let yelp = new yelpAPI(apiKey);
@@ -35,6 +36,7 @@ module.exports = {
           user : req.user,
           destination: destinations[0],
           restaurants: JSON.parse(data).businesses,
+          allDestinations: allDestinations,
       } );
       
       // Success
@@ -78,28 +80,40 @@ module.exports = {
         address: req.body.address,
         phone: req.body.phone,
         user: req.user.id,
-        // tripID: req.params.id,
+        location: req.params.location,
       });
       console.log("Added!");
 
 
-      res.redirect("/itinerary");
+      res.redirect(`/itinerary/${req.params.location}`);
     } catch (err) {
       console.log(err);
     }
   },
   getItin: async (req, res) => {
     try {
-      const itinerary = await Added.find({ user: req.user.id });
-      res.render("itinerary.ejs", { itinerary: itinerary, user: req.user });
+      const allDestinations = await Destination.find({ user: req.user.id });
+      const itinerary = await Added.find({ user: req.user.id, location: req.params.location });
+      res.render("itinerary.ejs", { itinerary: itinerary, user: req.user, allDestinations: allDestinations });
     } catch (err) {
       console.log(err);
     }
   },
-  // deleteDestination: async (req, res) => {
+  deleteDestination: async (req, res) => {
+    try {
+      const _id = ObjectId(req.params.id)
+      await Destination.remove({ _id: _id });
+      res.redirect("/profile");
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  // deleteItin: async (req, res) => {
   //   try {
-  //     const posts = await Post.find({ user: req.user.id });
-  //     res.render("profile.ejs", { posts: posts, user: req.user });
+  //     console.log("1...2..3")
+  //     const _id = ObjectId(req.params.id)
+  //     await Added.remove({ _id: _id });
+  //     res.redirect("/itinerary");
   //   } catch (err) {
   //     console.log(err);
   //   }

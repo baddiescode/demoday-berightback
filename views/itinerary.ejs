@@ -1,19 +1,32 @@
-<%- include('partials/header') -%>
+<%- include('partials/nav') -%>
 
-<tbody>
+
+<ol class="list-group list-group-numbered">
     <% for(var i = 0; i < itinerary.length; i++) { %>
-    <tr>
-      <form action="/post/addIten" method="POST">
-        <input name="name" value="<%= itinerary[i].name %>" readonly>
-        <input name="rating" value="<%= itinerary[i].rating %>" readonly>
-        <input name="price" value="<%= itinerary[i].price %>" readonly>
-        <input name="address" value="<%= itinerary[i].address %>" readonly size="40">
-        <input name="phone" value="<%= itinerary[i].phone %>" readonly>
-        <input class="add" type="submit" value="Add">
-      </form>
-    </tr>
+
+        <form action="/post/addIten" method="POST">
+
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <input class="card-text title w-100 fw-bold fs-3" name="name" value="<%= itinerary[i].name %>" readonly>
+                <span class="fs-5">Rating:</span><input class="card-text mt-3 fs-5" name="rating" value="<%= itinerary[i].rating %>" readonly>
+                <span class="fs-5">Price:</span><input class="card-text mt-3 fs-5" name="price" value="<%= itinerary[i].price %>" readonly>
+                <span class="fs-5">Address:</span><input class="card-text mt-3 fs-5" name="address" value="<%= itinerary[i].address %>" readonly size="40">
+                <span class="fs-5">Number:</span><input class="card-text mt-3 fs-5" name="phone" value="<%= itinerary[i].phone %>" readonly>
+            </div>
+            
+                <form action="/post/deleteItin/<%= itinerary[i].id%>?_method=DELETE"
+                  method="POST"
+                  class="col-3"
+                  >
+                  <button class="btn btn-primary fa fa-trash" type="submit"></button>
+                  </form>
+            </li>
+
+        </form>
 
     <% } %>
-  </tbody>
+  </ol>
+
 
 <%- include('partials/footer') -%>
