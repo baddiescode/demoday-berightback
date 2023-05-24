@@ -93,8 +93,9 @@ module.exports = {
   getItin: async (req, res) => {
     try {
       const allDestinations = await Destination.find({ user: req.user.id });
+      const destinations = await Added.find({ user: req.user.id, location: req.params.location });
       const itinerary = await Added.find({ user: req.user.id, location: req.params.location });
-      res.render("itinerary.ejs", { itinerary: itinerary, user: req.user, allDestinations: allDestinations });
+      res.render("itinerary.ejs", { itinerary: itinerary, user: req.user, allDestinations: allDestinations, destinations: destinations });
     } catch (err) {
       console.log(err);
     }

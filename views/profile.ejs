@@ -73,14 +73,14 @@
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li class="active"><a href="/profile">Home</a></li>
 							<li>
-								<a href="/itinerary" class="fh5co-sub-ddown">Itinerary</a>
+								<a class="fh5co-sub-ddown">Itinerary</a>
 								<ul class="fh5co-sub-menu">
 									<% for(var i=0; i<destinations.length; i++) { %>
 										<li><a href="/itinerary/<%= destinations[i].location%>"><%= destinations[i].location %></a></li>
 									  <% } %>
 								</ul>
 							</li>
-							<li><a href="hotel.html">Budget</a></li>
+							<!-- <li><a href="hotel.html">Budget</a></li> -->
 							<li><a href="/logout">Logout</a></li>
 						</ul>
 					</nav>
@@ -102,7 +102,7 @@
 								  <!-- Nav tabs -->
 								   <ul class="nav nav-tabs" role="tablist">
 								      <li role="presentation" class="active">
-								      	<a href="#flights" aria-controls="flights" role="tab" data-toggle="tab">Flights</a>
+								      	<a href="#flights" aria-controls="flights" role="tab" data-toggle="tab">Trips</a>
 								      </li>
 								   </ul>
 
@@ -127,7 +127,7 @@
 													</div>
 												  </div>
 												  <div class="col-lg-2">
-													<input type="submit" class="btn_search" id="plan" value="Start Planning">
+													<input type="submit" class="shadow__btn" id="plan" value="Start Planning">
 												  </div>
 												</section>
 													
